@@ -6,19 +6,77 @@ const client = new PocketBase("http://127.0.0.1:8090");
 const SignUpForm = () => {
   const emailInput = useRef();
   const passwordInput = useRef();
+  const firstNameInput = useRef();
+  const lastNameInput = useRef();
 
-  const handleSignUp = () => {
-    client.users.create({
+  const handleSignUp = async () => {
+    const user = await client.users.create({
       email: emailInput.current.value,
       password: passwordInput.current.value,
       passwordConfirm: passwordInput.current.value,
     });
+
+    // set user profile data
+    await client.records.update("profiles", user.profile.id, {
+      name: `${firstNameInput.current.value} ${lastNameInput.current.value}`,
+    });
+
+    window.location.href = "/";
   };
 
   return (
     <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
       <form>
-        <div className="grid grid-cols-2 gap-4"></div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="form-group mb-6">
+            <input
+              type="text"
+              className="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="exampleInput123"
+              aria-describedby="emailHelp123"
+              placeholder="First name"
+              ref={firstNameInput}
+            />
+          </div>
+          <div className="form-group mb-6">
+            <input
+              type="text"
+              className="form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="exampleInput124"
+              aria-describedby="emailHelp124"
+              placeholder="Last name"
+              ref={lastNameInput}
+            />
+          </div>
+        </div>
         <div className="form-group mb-6">
           <input
             type="email"
@@ -84,6 +142,7 @@ const SignUpForm = () => {
       duration-150
       ease-in-out"
           onClick={handleSignUp}
+          type="button"
         >
           Sign up
         </button>
