@@ -8,11 +8,15 @@ const SignInForm = ({ onRegisterClick }) => {
   const passwordInput = useRef();
 
   const handleAuth = async () => {
-    const authData = await client.users.authViaEmail(
-      emailInput.current.value,
-      passwordInput.current.value
-    );
-    console.log(authData);
+    // this function is a work in progress lol
+    const authData = await client.users
+      .authViaEmail(emailInput.current.value, passwordInput.current.value)
+      .catch((e) => {
+        if (e.status === 400) {
+          alert("Naughty Naughty");
+        }
+      });
+    alert("Good!");
   };
 
   return (
