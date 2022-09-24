@@ -1,3 +1,7 @@
+import PocketBase from "/node_modules/pocketbase/dist/pocketbase.es.mjs";
+
+const client = new PocketBase("http://127.0.0.1:8090");
+
 const SignUpForm = () => {
   return (
     <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
