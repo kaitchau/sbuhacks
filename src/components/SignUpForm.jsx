@@ -1,59 +1,24 @@
 import PocketBase from "/node_modules/pocketbase/dist/pocketbase.es.mjs";
+import { useRef } from "react";
 
 const client = new PocketBase("http://127.0.0.1:8090");
 
 const SignUpForm = () => {
+  const emailInput = useRef();
+  const passwordInput = useRef();
+
+  const handleSignUp = () => {
+    client.users.create({
+      email: emailInput.current.value,
+      password: passwordInput.current.value,
+      passwordConfirm: passwordInput.current.value,
+    });
+  };
+
   return (
     <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
       <form>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="form-group mb-6">
-            <input
-              type="text"
-              className="form-control
-          block
-          w-full
-          px-3
-          py-1.5
-          text-base
-          font-normal
-          text-gray-700
-          bg-white bg-clip-padding
-          border border-solid border-gray-300
-          rounded
-          transition
-          ease-in-out
-          m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              id="exampleInput123"
-              aria-describedby="emailHelp123"
-              placeholder="First name"
-            />
-          </div>
-          <div className="form-group mb-6">
-            <input
-              type="text"
-              className="form-control
-          block
-          w-full
-          px-3
-          py-1.5
-          text-base
-          font-normal
-          text-gray-700
-          bg-white bg-clip-padding
-          border border-solid border-gray-300
-          rounded
-          transition
-          ease-in-out
-          m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              id="exampleInput124"
-              aria-describedby="emailHelp124"
-              placeholder="Last name"
-            />
-          </div>
-        </div>
+        <div className="grid grid-cols-2 gap-4"></div>
         <div className="form-group mb-6">
           <input
             type="email"
@@ -73,6 +38,7 @@ const SignUpForm = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             id="exampleInput125"
             placeholder="Email address"
+            ref={emailInput}
           />
         </div>
         <div className="form-group mb-6">
@@ -94,11 +60,11 @@ const SignUpForm = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             id="exampleInput126"
             placeholder="Password"
+            ref={passwordInput}
           />
         </div>
 
         <button
-          type="submit"
           className="
       w-full
       px-6
@@ -117,6 +83,7 @@ const SignUpForm = () => {
       transition
       duration-150
       ease-in-out"
+          onClick={handleSignUp}
         >
           Sign up
         </button>

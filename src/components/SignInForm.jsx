@@ -4,7 +4,7 @@ const SignInForm = ({ onRegisterClick }) => {
       <form>
         <div className="form-group mb-6">
           <label
-            for="exampleInputEmail2"
+            htmlFor="exampleInputEmail2"
             className="form-label inline-block mb-2 text-gray-700"
           >
             Email address
@@ -33,7 +33,7 @@ const SignInForm = ({ onRegisterClick }) => {
         </div>
         <div className="form-group mb-6">
           <label
-            for="exampleInputPassword2"
+            htmlFor="exampleInputPassword2"
             className="form-label inline-block mb-2 text-gray-700"
           >
             Password
@@ -67,7 +67,7 @@ const SignInForm = ({ onRegisterClick }) => {
             />
             <label
               className="form-check-label inline-block text-gray-800"
-              for="exampleCheck2"
+              htmlFor="exampleCheck2"
             >
               Remember me
             </label>
