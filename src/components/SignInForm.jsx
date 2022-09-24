@@ -11,13 +11,15 @@ const SignInForm = ({ onRegisterClick }) => {
     // this function is a work in progress lol
     const authData = await client.users
       .authViaEmail(emailInput.current.value, passwordInput.current.value)
+      .then(() => {
+        alert("Good!");
+      })
       .catch((e) => {
         if (e.status === 400) {
           alert("Incorrect");
         }
       });
     console.log(authData);
-    alert("Good!");
   };
 
   return (

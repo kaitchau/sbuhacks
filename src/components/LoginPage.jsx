@@ -2,7 +2,7 @@ import { useState } from "react";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 
-const LoginBox = () => {
+const LoginPage = () => {
   const [haveAccount, setHaveAccount] = useState(true);
 
   const handleRegister = () => {
@@ -10,14 +10,14 @@ const LoginBox = () => {
   };
 
   return (
-    <>
+    <div className="grid justify-center w-screen h-screen content-center">
       {haveAccount ? (
         <SignInForm onRegisterClick={handleRegister} />
       ) : (
         <SignUpForm />
       )}
-    </>
+    </div>
   );
 };
 
-export default LoginBox;
+export default LoginPage;
