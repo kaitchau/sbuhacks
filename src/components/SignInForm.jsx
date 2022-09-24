@@ -13,9 +13,10 @@ const SignInForm = ({ onRegisterClick }) => {
       .authViaEmail(emailInput.current.value, passwordInput.current.value)
       .catch((e) => {
         if (e.status === 400) {
-          alert("Naughty Naughty");
+          alert("Incorrect");
         }
       });
+    console.log(authData);
     alert("Good!");
   };
 
